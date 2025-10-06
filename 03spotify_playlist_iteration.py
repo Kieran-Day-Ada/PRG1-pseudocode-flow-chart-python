@@ -9,6 +9,7 @@ happy_songs = 0
 sad_songs = 0
 energetic_songs = 0
 chill_songs = 0
+romantic_songs = 0
 
 # Iteration through playlist
 for i in range(playlist_size):
@@ -21,11 +22,55 @@ for i in range(playlist_size):
         sad_songs += 1
     elif song_mood == "energetic":
         energetic_songs += 1
-    else:
+    elif song_mood == "chill":
         chill_songs += 1
+    else:
+        romantic_songs += 1
+
+def most_common_mood():
+    mood_totals = [happy_songs, sad_songs, energetic_songs, chill_songs, romantic_songs]
+    mood_types = ["happy", "sad", "energetic", "chill", "romantic"]
+
+    largest = 0
+    index = 0
+    most_common = ""
+    for mood_count in mood_totals:
+        if mood_count > largest:
+            largest = mood_count
+            most_common = str(mood_types[index])
+        index += 1
+
+    return most_common
+
 
 # Calculate totals and percentages
 total_songs = happy_songs + sad_songs + energetic_songs + chill_songs
+
+"""
+Prediction on running program 3 with the following inputs:
+- Playlist: "My Vibes"
+- Songs: 5
+- Moods: happy, sad, energetic, happy, chill
+
+Prediction:
+- Inputs saved into the corresponding variables
+- Eventually happy_songs = 2, sad_songs = 1, energetic_songs = 1, chill_songs = 1
+
+Outputs:
+"Your playlist 'My Vibes' analysis:
+2 happy songs (40%)
+1 sad songs (20%)
+1 energetic songs (20%)
+1 chill songs (20%)
+Overall mood: Upbeat! :)
+
+How does the counter system work?
+- Checks against a user input and increments a specific counter based on the value.
+
+What determines the "Overall mood"?
+- The amount of happy songs relative to the amount of sad songs.
+
+"""
 
 # Output results
 print(f"\nYour playlist '{playlist_name}' analysis:")
@@ -33,6 +78,8 @@ print(f"{happy_songs} happy songs ({(happy_songs/total_songs)*100:.1f}%)")
 print(f"{sad_songs} sad songs ({(sad_songs/total_songs)*100:.1f}%)")
 print(f"{energetic_songs} energetic songs ({(energetic_songs/total_songs)*100:.1f}%)")
 print(f"{chill_songs} chill songs ({(chill_songs/total_songs)*100:.1f}%)")
+print(f"{romantic_songs} romantic songs ({(romantic_songs/total_songs)*100:.1f}%)")
+print(f"Most common mood in your playlist: {most_common_mood()}")
 
 if happy_songs > sad_songs:
     print("Overall mood: Upbeat! 😊")
