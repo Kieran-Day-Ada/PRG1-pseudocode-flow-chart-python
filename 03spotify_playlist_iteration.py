@@ -32,15 +32,15 @@ def most_common_mood():
     mood_types = ["happy", "sad", "energetic", "chill", "romantic"]
 
     largest = 0
-    index = 0
+    index = 0 # Counter variable used to set what type of mood was seen as the largest.
     most_common = ""
-    for mood_count in mood_totals:
-        if mood_count > largest:
-            largest = mood_count
-            most_common = str(mood_types[index])
+    for mood_count in mood_totals: # Check each mood_total one by one.
+        if mood_count > largest: # Is the current mood total being looked at the biggest we've seen yet?
+            largest = mood_count # If so, update the largest variable to the largest value we just saw.
+            most_common = str(mood_types[index]) # Since we found a new largest value, update what mood type this was seen in.
         index += 1
 
-    return most_common
+    return most_common # Return the type of mood that was the most common.
 
 
 # Calculate totals and percentages
